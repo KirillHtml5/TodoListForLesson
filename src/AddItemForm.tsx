@@ -1,10 +1,12 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {IconButton, TextField} from "@material-ui/core";
+import {AddBox} from "@material-ui/icons";
 
 type AddItemFormPropsType = {
     addItem: (newTitle: string) => void
 }
 
-const AddItemForm: React.FC<AddItemFormPropsType> = (props ) => {
+const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
 
     const [title, setTitle] = useState("")
     let [error, setError] = useState<string | null>(null)
@@ -29,13 +31,29 @@ const AddItemForm: React.FC<AddItemFormPropsType> = (props ) => {
     }
     return (
         <div>
-            <input value={title}
-                   onChange={onChangeHandler}
-                   onKeyPress={onKeyPressHandler}
-                   className={error ? "error" : ""}
+            <TextField
+                size={'small'}
+                variant={'outlined'}
+                value={title}
+                onChange={onChangeHandler}
+                onKeyPress={onKeyPressHandler}
+                label={"Title"}
+                error={!!error}
+                helperText={error}
             />
-            <button onClick={addItem}>+</button>
-            {error && <div className="error-message">{error}</div>}
+            {/*<input value={title}*/}
+            {/*       onChange={onChangeHandler}*/}
+            {/*       onKeyPress={onKeyPressHandler}*/}
+            {/*       className={error ? "error" : ""}*/}
+            {/*/>*/}
+            {/*<Button onClick={addItem}>+</Button>*/}
+            <IconButton
+                size={'medium'}
+                color={'primary'}
+                onClick={addItem}>
+                <AddBox/>
+            </IconButton>
+            {/*{error && <div className="error-message">{error}</div>}*/}
         </div>
     );
 };
