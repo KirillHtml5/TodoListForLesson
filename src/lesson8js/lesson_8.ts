@@ -128,8 +128,17 @@ export function sumFirstNumbers(N: number): number {
 // Считаем, что количество банкнот каждого номинала не ограничено
 
 
-export function getBanknoteList(amountOfMoney: number): Array<number> {
+export function getBanknoteList(amountOfMoney: number): any {
     //...здесь пишем код.
     // В return стоит "заглушка", чтоб typescript не ругался
-    return [1]
+    if (amountOfMoney===1) return 1
+    if (amountOfMoney>=1000) return (1000 +',' + getBanknoteList(amountOfMoney-1000)).split(',').map(el=> Number(el))
+    if (500<=amountOfMoney) return (500 +',' + getBanknoteList(amountOfMoney-500)).split(',').map(el=> Number(el))
+    if (100<=amountOfMoney) return (100 +',' + getBanknoteList(amountOfMoney-100)).split(',').map(el=> Number(el))
+    if (50<=amountOfMoney) return (50 +',' + getBanknoteList(amountOfMoney-50)).split(',').map(el=> Number(el))
+    if (20<=amountOfMoney) return (20 +',' + getBanknoteList(amountOfMoney-20)).split(',').map(el=> Number(el))
+    if (10<=amountOfMoney) return (10 +',' + getBanknoteList(amountOfMoney-10)).split(',').map(el=> Number(el))
+    if (5<=amountOfMoney) return (5 +',' + getBanknoteList(amountOfMoney-5)).split(',').map(el=> Number(el))
+    if (2<=amountOfMoney) return (2 +',' + getBanknoteList(amountOfMoney-2)).split(',').map(el=> Number(el))
+
 }
