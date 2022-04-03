@@ -13,7 +13,7 @@ export type TodolistType = {
     filter: FilterValuesType
 }
 
-type TasksStateType = {
+export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
 
@@ -50,6 +50,7 @@ function App() {
         // засетаем в стейт копию объекта, чтобы React отреагировал перерисовкой
         setTasks({...tasks});
     }
+
     function addTask(title: string, todolistId: string) {
         const task = {id: v1(), title: title, isDone: false};
         //достанем нужный массив по todolistId:
@@ -59,6 +60,7 @@ function App() {
         // засетаем в стейт копию объекта, чтобы React отреагировал перерисовкой
         setTasks({...tasks});
     }
+
     function changeStatus(id: string, isDone: boolean, todolistId: string) {
         //достанем нужный массив по todolistId:
         const todolistTasks = tasks[todolistId];
@@ -71,6 +73,7 @@ function App() {
             setTasks({...tasks});
         }
     }
+
     function changeTaskTitle(id: string, title: string, todolistId: string) {
         setTasks({
             ...tasks,
@@ -87,6 +90,7 @@ function App() {
             setTodolists([...todolists])
         }
     }
+
     function removeTodolist(id: string) {
         // засунем в стейт список тудулистов, id которых не равны тому, который нужно выкинуть
         setTodolists(todolists.filter(tl => tl.id != id));
@@ -95,6 +99,7 @@ function App() {
         // засетаем в стейт копию объекта, чтобы React отреагировал перерисовкой
         setTasks({...tasks});
     }
+
     function addNewTodolist(newTodolistTitle: string) {
         const newTodolistId = v1()
         const newTodolist: TodolistType = {
@@ -105,6 +110,7 @@ function App() {
         setTodolists(updatedTodolists)
         setTasks({...tasks, [newTodolistId]: []})
     }
+
     function changeTodolistTitle(title: string, todolistId: string) {
         setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, title: title} : tl))
     }
