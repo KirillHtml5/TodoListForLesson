@@ -6,8 +6,9 @@ type AddItemFormPropsType = {
     addItem: (newTitle: string) => void
 }
 
-const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
+const AddItemForm: React.FC<AddItemFormPropsType> =React.memo((props) => {
 
+    console.log('AddItemForm')
     const [title, setTitle] = useState("")
     let [error, setError] = useState<string | null>(null)
 
@@ -15,7 +16,9 @@ const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
         setTitle(e.currentTarget.value)
     }
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        setError(null);
+        if (error !== null) {
+            setError(null);
+        }
         if (e.key === 'Enter') {
             addItem();
         }
@@ -56,6 +59,6 @@ const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
             {/*{error && <div className="error-message">{error}</div>}*/}
         </div>
     );
-};
+});
 
 export default AddItemForm;
